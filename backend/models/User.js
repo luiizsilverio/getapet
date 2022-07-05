@@ -1,5 +1,5 @@
 const mongoose = require('../db/conn')
-const { Schema } = mongoose
+// const { Schema } = mongoose
 
 // Cria o Schema
 const UserSchema = new mongoose.Schema({
@@ -24,10 +24,12 @@ const UserSchema = new mongoose.Schema({
     phone: {
         type: String,
         required: true
-    }    
-})
+    }
+  },
+  { timestamps: true }
+)
 
 // Cria o Model
-const User = mongoose.Model("User", UserSchema, { timestamps: true })
+const User = mongoose.model("User", UserSchema)
 
 module.exports = User
