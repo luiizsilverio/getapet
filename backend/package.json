@@ -17,6 +17,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.2",
     "multer": "*",
-    "nodemon": "^2.0.18"
+    "nodemon": "^2.0.18",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/joi": "^17.2.3"
   }
 }
