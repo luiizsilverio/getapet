@@ -137,7 +137,6 @@ module.exports = class UserController {
   static async editUser(req, res) {
     const { id } = req.params;
     const { name, email, phone, password, confirmPassword } = req.body;
-    let image = '';
 
     // user validations
 
@@ -181,9 +180,12 @@ module.exports = class UserController {
       user.password = passwordHash;
     }
 
+    const image = req.file?.filename || '';
+
     user.name = name;
     user.email = email;
     user.phone = phone;
+    user.image = image;
 
     try {
       await User.findOneAndUpdate(
@@ -198,6 +200,5 @@ module.exports = class UserController {
       res.status(500).json({ error: error.errors });
       return;
     }
-
   }
 }

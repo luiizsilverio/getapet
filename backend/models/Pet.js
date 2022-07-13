@@ -1,5 +1,4 @@
 const mongoose = require('../db/conn')
-// const { Schema } = mongoose
 
 // Cria o Schema
 const PetSchema = new mongoose.Schema({
@@ -33,6 +32,6 @@ const PetSchema = new mongoose.Schema({
 )
 
 // Cria o Model
-const User = mongoose.model("Pet", PetSchema)
+const Pet = mongoose.model("Pet", PetSchema)
 
 module.exports = Pet

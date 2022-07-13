@@ -1,5 +1,4 @@
 const mongoose = require('../db/conn')
-// const { Schema } = mongoose
 
 // Cria o Schema
 const UserSchema = new mongoose.Schema({
