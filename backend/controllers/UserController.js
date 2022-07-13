@@ -173,7 +173,31 @@ module.exports = class UserController {
       return;
     }
 
-    res.status(200).json({ message: "OK" });
+    // create a password
+
+    if (password) {
+      const salt = await bcrypt.genSalt(12);
+      const passwordHash = await bcrypt.hash(password, salt);
+      user.password = passwordHash;
+    }
+
+    user.name = name;
+    user.email = email;
+    user.phone = phone;
+
+    try {
+      await User.findOneAndUpdate(
+        { _id: user._id },
+        { $set: user },
+        { new: true }
+      )
+
+      res.status(200).json({ message: "Usuário atualizado com sucesso" });
+
+    } catch (err) {
+      res.status(500).json({ error: error.errors });
+      return;
+    }
 
   }
 }
