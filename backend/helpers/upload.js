@@ -1,5 +1,6 @@
 const multer = require("multer");
 const path = require("path");
+const crypto = require("crypto");
 
 const imageStore = multer.diskStorage({
   destination: function (req, file, callback) {
@@ -10,10 +11,12 @@ const imageStore = multer.diskStorage({
     else if (req.baseUrl.includes("pets")) {
       folder = 'pets';
     }
-    return callback(null, `public/images/${folder}`);
+    return callback(null, `public/images/${folder}/`);
   },
   filename: function (req, file, callback) {
-    const fileName = `${Date.now()}-${path.extname(file.originalname)}`;
+    const hash = crypto.randomBytes(6).toString('hex')
+    const fileName = `${ hash }-${ file.originalname }`;
+    // const fileName = `${Date.now()}-${path.extname(file.originalname)}`;
     return callback(null, fileName)
   }
 })

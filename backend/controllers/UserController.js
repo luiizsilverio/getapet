@@ -36,7 +36,7 @@ module.exports = class UserController {
       }
 
     } catch (error) {
-      res.status(400).json({ error: error.errors });
+      res.status(422).json({ error: error.errors });
       return;
     }
 

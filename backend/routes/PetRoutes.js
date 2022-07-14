@@ -2,6 +2,16 @@ const router = require('express').Router();
 
 const PetController = require('../controllers/PetController');
 
-router.post('/create', PetController.create);
+// middlewares
+const verifyToken = require('../helpers/verify-token');
+const { imageUpload } = require('../helpers/upload');
+
+router.get('/', PetController.getAll);
+
+router.post('/create',
+  verifyToken,
+  imageUpload.array('images'),
+  PetController.create
+);
 
 module.exports = router;
