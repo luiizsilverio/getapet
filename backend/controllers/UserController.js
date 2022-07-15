@@ -31,21 +31,18 @@ module.exports = class UserController {
       })
 
       if (password !== confirmPassword) {
-        res.status(422).json({ error: 'Senhas não conferem'});
-        return;
+        return res.status(422).json({ error: 'Senhas não conferem'});
       }
 
     } catch (error) {
-      res.status(422).json({ error: error.errors });
-      return;
+      return res.status(422).json({ error: error.errors });
     }
 
     // check if user exists
     const userExists = await User.findOne({email: email});
 
     if (userExists) {
-      res.status(400).json({ error: 'E-mail já está sendo utilizado'})
-      return;
+      return res.status(400).json({ error: 'E-mail já está sendo utilizado'});
     }
 
     // create a password
@@ -88,16 +85,14 @@ module.exports = class UserController {
     const user = await User.findOne({email: email});
 
     if (!user) {
-      res.status(404).json({ error: 'Usuário não cadastrado'});
-      return;
+      return res.status(404).json({ error: 'Usuário não cadastrado'});
     }
 
     // check if password match
     const checkPassword = await bcrypt.compare(password, user.password);
 
     if (!checkPassword) {
-      res.status(401).json({ error: 'Senha inválida'});
-      return;
+      return res.status(401).json({ error: 'Senha inválida'});
     }
 
     // generate jwt token
@@ -127,8 +122,7 @@ module.exports = class UserController {
     const user = await User.findById(id).select('-password');
 
     if (!user) {
-      res.status(404).json({ error: 'Usuário não cadastrado'});
-      return;
+      return res.status(404).json({ error: 'Usuário não cadastrado'});
     }
 
     res.status(200).json({ user });
@@ -146,13 +140,11 @@ module.exports = class UserController {
       })
 
       if (password !== confirmPassword) {
-        res.status(422).json({ error: 'Senhas não conferem'});
-        return;
+        return res.status(422).json({ error: 'Senhas não conferem'});
       }
 
     } catch (error) {
-      res.status(400).json({ error: error.errors });
-      return;
+      return res.status(400).json({ error: error.errors });
     }
 
     // check if user exists
@@ -161,15 +153,13 @@ module.exports = class UserController {
     const user = await getUserByToken(token);
 
     if (!user) {
-      res.status(422).json({ error: 'Usuário não cadastrado' });
-      return;
+      return res.status(422).json({ error: 'Usuário não cadastrado' });
     }
 
     const emailExists = await User.findOne({email: email});
 
     if (emailExists && user.email !== email) {
-      res.status(403).json({ error: 'E-mail já foi cadastrado' });
-      return;
+      return res.status(403).json({ error: 'E-mail já foi cadastrado' });
     }
 
     // create a password
@@ -197,8 +187,7 @@ module.exports = class UserController {
       res.status(200).json({ message: "Usuário atualizado com sucesso" });
 
     } catch (err) {
-      res.status(500).json({ error: error.errors });
-      return;
+      return res.status(500).json({ error: error.errors });
     }
   }
 }
