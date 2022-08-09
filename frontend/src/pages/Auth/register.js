@@ -1,17 +1,27 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+
 import Input from "../../components/form/Input";
 import styles from "../../components/form/Form.module.scss";
+import { UserContext } from "../../context/UserContext";
 
 export default function Register() {
+  const [user, setUser] = useState({})
+  const { registerUser } = useContext(UserContext);
 
   function handleChange(e) {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    registerUser(user);
   }
 
   return (
     <section className={styles.form_container}>
       <h1>Cadastro</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Input
           text="Nome"
           type="text"
