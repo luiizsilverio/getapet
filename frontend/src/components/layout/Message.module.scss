@@ -1,0 +1,28 @@
+$color-success: #155724;
+$color-success-2: #d4edda;
+$color-success-3: #c3e6cb;
+$color-error: #721c24;
+$color-error-2: #f8d7da;
+$color-error-3: #f5c6cb;
+
+.message {
+  max-width: 60%;
+  padding: 1rem;
+  border: 1px solid #000;
+  margin: 1rem auto 0;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.success {
+  color: $color-success;
+  background-color: $color-success-2;
+  border-color: $color-success-3;
+}
+
+.error {
+  color: $color-error;
+  background-color: $color-error-2;
+  border-color: $color-error-3;
+}
