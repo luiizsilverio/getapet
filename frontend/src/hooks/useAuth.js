@@ -1,11 +1,22 @@
 import {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import api from '../utils/api';
 import useFlashMessage from './useFlashMessage';
 
 
 export default function useAuth() {
+  const [authenticated, setAuthenticated] = useState(false);
   const { setFlashMessage } = useFlashMessage();
+  const navigate = useNavigate ();
+
+  useEffect(() => {
+    const token = localStorage.getItem('getapet:token');
+
+    if (token) {
+      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+      setAuthenticated(true);
+    }
+  }, [])
 
   async function registerUser(user) {
     try {
@@ -14,12 +25,24 @@ export default function useAuth() {
         'Cadastro realizado com sucesso',
         'success'
       );
+
+      await authUser(response.data);
       return response.data
 
     } catch(error) {
-      setFlashMessage(error.response.data.error[0], 'error');
+      if (typeof error.response.data.error === 'string') {
+        setFlashMessage(error.response.data.error, 'error');
+      } else {
+        setFlashMessage(error.response.data.error[0], 'error');
+      }
     }
   }
 
-  return { registerUser }
+  async function authUser(data) {
+    setAuthenticated(true);
+    localStorage.setItem('getapet:token', JSON.stringify(data.token));
+    navigate('/');
+  }
+
+  return { registerUser, authUser, authenticated }
 }
