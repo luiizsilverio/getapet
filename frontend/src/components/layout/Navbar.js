@@ -10,10 +10,12 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.navbar_logo}>
-        <img src={Logo} alt="Get a Pet" />
-        <h2>Get a Pet</h2>
-      </div>
+      <Link to="/">
+        <div className={styles.navbar_logo}>
+          <img src={Logo} alt="Get a Pet" />
+          <h2>Get a Pet</h2>
+        </div>
+      </Link>
       <ul>
         <li>
           <Link to="/">Adotar</Link>

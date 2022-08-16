@@ -2,8 +2,8 @@
   display: flex;
   flex: 1;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
-  background-color: #FFd400;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--color-laranja-2);
   color: var(--color-title);
 
   ul {
@@ -48,12 +48,12 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 600px) {
   .navbar {
     padding: 1rem;
 
     li, a {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 0.5rem 4px;
     margin-left: 0;
     }

@@ -1,6 +1,9 @@
 .container {
-  min-height: 75vh;
-  padding: 1rem 1rem 2rem;
+  height: 100vh;
+  // min-height: 75vh;
+  // padding: 1rem 1rem 2rem;
+  padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  background: linear-gradient(to bottom, #fff, #fff, var(--color-cinza-fundo));
 }

@@ -1,10 +1,107 @@
-import React from 'react';
-import styles from './Profile.module.scss';
+import React, { useEffect, useState } from 'react';
+import formStyles from '../../components/form/Form.module.scss';
+import Input from '../../components/form/Input';
+import api from '../../utils/api';
+import useFlashMessage from '../../hooks/useFlashMessage';
 
 export default function Profile() {
+  const [user, setUser] = useState({});
+  const [token] = useState(localStorage.getItem('getapet:token') || '');
+  const { setFlashMessage } = useFlashMessage();
+
+  function onFileChange(e) {
+    setUser({ ...user, [e.target.name]: e.target.files[0] });
+  }
+
+  function handleChange(e) {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append('_id', user._id);
+    formData.append('name', user.name);
+    formData.append('email', user.email);
+    formData.append('phone', user.phone);
+    formData.append('image', user.image);
+
+    await api.patch(`/users/edit/${user._id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then((response) => {
+      setFlashMessage(response.data, 'success');
+    })
+    .catch((err) => {
+      setFlashMessage(err.response.data, 'error');
+    })
+  }
+
+  useEffect(() => {
+    api.get('/users/checkuser', {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`
+      }
+    }).then((response) => {
+      setUser(response.data);
+    })
+  }, [token]);
+
   return (
-    <section>
-      <h1>Profile</h1>
+    <section className={formStyles.form_container}>
+      <h1>Perfil</h1>
+      <form onSubmit={handleSubmit}>
+        <Input
+          text="Preview da Imagem"
+          type="file"
+          name="image"
+          onChange={onFileChange}
+        />
+        <Input
+          text="E-mail"
+          type="email"
+          name="email"
+          placeholder="Digite o seu e-mail"
+          onChange={handleChange}
+          value={user.email || ''}
+        />
+        <Input
+          text="Nome"
+          type="text"
+          name="name"
+          placeholder="Digite o seu nome"
+          onChange={handleChange}
+          value={user.name || ''}
+        />
+        <Input
+          text="Telefone"
+          type="text"
+          name="phone"
+          placeholder="Digite o seu telefone"
+          onChange={handleChange}
+          value={user.phone || ''}
+        />
+        <Input
+          text="Senha"
+          type="password"
+          name="password"
+          placeholder="Digite a sua senha"
+          onChange={handleChange}
+        />
+        <Input
+          text="Confirmação de senha"
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirme a sua senha"
+          onChange={handleChange}
+        />
+        <input type="submit" value="Editar" />
+      </form>
     </section>
   )
 }

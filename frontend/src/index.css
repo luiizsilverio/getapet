@@ -8,6 +8,9 @@
 :root {
   --color-title: #16479D;
   --color-botao-verde: #25b456;
+  --color-cinza-fundo: #f0f0f0;
+  --color-laranja: #FFd400;
+  --color-laranja-2: #ffd60a;
 }
 
 h1 {

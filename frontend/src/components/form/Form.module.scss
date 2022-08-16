@@ -2,15 +2,15 @@
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  background-color: #FFF;
+  background-color: var(--color-cinza-fundo);
   border-radius: 15px;
+  padding: 1rem 2rem;
 
   input[type='submit'] {
     border-radius: 8px;
     background-color: var(--color-botao-verde);
     color: white;
     border: none;
-    // min-width: 100px;
     min-height: 2.5rem;
     width: 100%;
     font-size: 1.1rem;
