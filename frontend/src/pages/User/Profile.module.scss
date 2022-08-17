@@ -1,3 +1,15 @@
+.profile_header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
 .profile_container {
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
+  max-width: 500px;
+}
+
+@media (max-width: 560px) {
+  .profile_container {
+    max-width: 400px;
+  }
 }

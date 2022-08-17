@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import formStyles from '../../components/form/Form.module.scss';
+import styles from './Profile.module.scss';
 import Input from '../../components/form/Input';
 import api from '../../utils/api';
 import useFlashMessage from '../../hooks/useFlashMessage';
+import RoundedImage from '../../components/layout/RoundedImage';
 
 export default function Profile() {
   const [user, setUser] = useState({});
+  const [preview, setPreview] = useState('');
   const [token] = useState(localStorage.getItem('getapet:token') || '');
   const { setFlashMessage } = useFlashMessage();
 
   function onFileChange(e) {
     setUser({ ...user, [e.target.name]: e.target.files[0] });
+    setPreview(e.target.files[0]);
   }
 
   function handleChange(e) {
@@ -22,11 +26,9 @@ export default function Profile() {
 
     const formData = new FormData();
 
-    formData.append('_id', user._id);
-    formData.append('name', user.name);
-    formData.append('email', user.email);
-    formData.append('phone', user.phone);
-    formData.append('image', user.image);
+    Object.keys(user).forEach((key) =>
+      formData.append(key, user[key]),
+    )
 
     await api.patch(`/users/edit/${user._id}`, formData, {
       headers: {
@@ -35,10 +37,16 @@ export default function Profile() {
       }
     })
     .then((response) => {
-      setFlashMessage(response.data, 'success');
+      console.log('response:', response)
+      setFlashMessage(response.data.message, 'success');
     })
-    .catch((err) => {
-      setFlashMessage(err.response.data, 'error');
+    .catch((error) => {
+      console.log('erro:', error.response.data.error[0])
+      if (typeof error.response.data.error === 'string') {
+        setFlashMessage(error.response.data.error, 'error');
+      } else {
+        setFlashMessage(error.response.data.error[0], 'error');
+      }
     })
   }
 
@@ -53,8 +61,20 @@ export default function Profile() {
   }, [token]);
 
   return (
-    <section className={formStyles.form_container}>
-      <h1>Perfil</h1>
+    <section className={`${formStyles.form_container} ${styles.profile_container}`}>
+      <div className={styles.profile_header}>
+        <h1>Perfil</h1>
+        {(user.image || preview) && (
+          <RoundedImage
+            alt={`Foto de ${user.name}`}
+            src={preview
+              ? URL.createObjectURL(preview)
+              : `${process.env.REACT_APP_API}/images/users/${user.image}`
+            }
+          />
+        )}
+      </div>
+
       <form onSubmit={handleSubmit}>
         <Input
           text="Preview da Imagem"

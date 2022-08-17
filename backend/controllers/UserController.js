@@ -8,7 +8,7 @@ const createUserToken = require('../helpers/create-user-token');
 const getToken = require('../helpers/get-token');
 const getUserByToken = require('../helpers/get-user-by-token');
 
-const schema = Yup.object().shape({
+const schemaNew = Yup.object().shape({
   name: Yup.string().required('Nome é obrigatório'),
   email: Yup.string().email("E-mail inválido")
     .required('E-mail é obrigatório'),
@@ -16,6 +16,13 @@ const schema = Yup.object().shape({
   password: Yup.string().required('Senha não informada')
     .min(4, "Senha deve ter no mínimo 4 letras"),
   confirmPassword: Yup.string().required('Senha incorreta')
+})
+
+const schemaEdit = Yup.object().shape({
+  name: Yup.string().required('Nome é obrigatório'),
+  email: Yup.string().email("E-mail inválido")
+    .required('E-mail é obrigatório'),
+  phone: Yup.string().required('Telefone é obrigatório')
 })
 
 module.exports = class UserController {
@@ -26,7 +33,7 @@ module.exports = class UserController {
     // user validations
 
     try {
-      await schema.validate(req.body, {
+      await schemaNew.validate(req.body, {
         abortEarly: false
       })
 
@@ -128,6 +135,12 @@ module.exports = class UserController {
     res.status(200).json({ user });
   }
 
+  static async getAllUsers(req, res) {
+    const users = await User.find().select('-password');
+
+    res.status(200).json(users || {});
+  }
+
   static async editUser(req, res) {
     const { id } = req.params;
     const { name, email, phone, password, confirmPassword } = req.body;
@@ -135,11 +148,11 @@ module.exports = class UserController {
     // user validations
 
     try {
-      await schema.validate(req.body, {
+      await schemaEdit.validate(req.body, {
         abortEarly: false
       })
 
-      if (password !== confirmPassword) {
+      if (password && password !== confirmPassword) {
         return res.status(422).json({ error: 'Senhas não conferem'});
       }
 
