@@ -31,3 +31,16 @@
     }
   }
 }
+
+.preview_pet_images {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-left: 1rem;
+  }
+}

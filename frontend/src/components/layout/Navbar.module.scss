@@ -3,7 +3,8 @@
   flex: 1;
   justify-content: space-between;
   padding: 0.5rem 1.5rem;
-  background-color: var(--color-laranja-2);
+  // background-color: var(--color-laranja-2);
+  background: linear-gradient(to top, var(--color-laranja), var(--color-laranja-2));
   color: var(--color-title);
 
   ul {
@@ -25,7 +26,9 @@
   }
 
   li:hover {
-    background-color: var(--color-title);
+    // background-color: var(--color-title);
+    background: linear-gradient(to bottom, var(--color-azul), var(--color-title));
+
     color: white;
 
     a {

@@ -10,13 +10,14 @@
   --color-botao-verde: #25b456;
   --color-cinza-fundo: #f0f0f0;
   --color-laranja: #FFd400;
-  --color-laranja-2: #ffd60a;
+  --color-laranja-2: #ffe66c;
+  --color-azul: #1d5fc9;
 }
 
 h1 {
   color: var(--color-title);
   margin-bottom: 1rem;
-  font-size: 2.1rem;
+  font-size: 2rem;
 }
 
 .bold {
