@@ -37,11 +37,9 @@ export default function Profile() {
       }
     })
     .then((response) => {
-      console.log('response:', response)
       setFlashMessage(response.data.message, 'success');
     })
     .catch((error) => {
-      console.log('erro:', error.response.data.error[0])
       if (typeof error.response.data.error === 'string') {
         setFlashMessage(error.response.data.error, 'error');
       } else {

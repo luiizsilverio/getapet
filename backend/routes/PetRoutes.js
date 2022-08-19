@@ -8,8 +8,8 @@ const { imageUpload } = require('../helpers/upload');
 
 router.get('/', PetController.getAll);
 router.get('/available', PetController.getAvailable);
-router.get('/:id', PetController.getPetById);
 router.get('/mypets', verifyToken, PetController.getUserPets);
+router.get('/:id', PetController.getPetById);
 router.get('/myadoptions', verifyToken, PetController.getUserAdoptions);
 router.delete('/:id', verifyToken, PetController.remove);
 router.post('/schedule/:id', verifyToken, PetController.schedule);

@@ -11,7 +11,7 @@ const colors = [
   'Mesclado'
 ];
 
-export default function PetForm({ petData, btnText, handleSubmit }) {
+export default function PetForm({ petData, btnText, onSubmit }) {
   const [pet, setPet] = useState(petData || {});
   const [preview, setPreview] = useState([]);
 
@@ -31,7 +31,7 @@ export default function PetForm({ petData, btnText, handleSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleSubmit(pet);
+    onSubmit(pet);
   }
 
   return (
