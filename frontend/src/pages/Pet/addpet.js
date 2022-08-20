@@ -28,7 +28,6 @@ export default function AddPet() {
       'Content-Type': 'multipart/form-data'
     })
     .then((response) => {
-      console.log(response.data)
       setFlashMessage(response.data.message, 'success');
       navigate('/pet/mypets');
     })
@@ -42,7 +41,7 @@ export default function AddPet() {
   }
 
   return (
-    <section className={styles.addpet_header}>
+    <section className={styles.pet_header}>
       <div>
         <h1>Cadastre um Pet</h1>
         <p>Ele ficará disponível para adoção</p>
