@@ -1,0 +1,103 @@
+.petlist_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    background-color: var(--color-title);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: .5rem .8rem;
+    transition: .5s;
+    border-radius: 5px;
+    border: 2px solid var(--color-title);
+
+    &:hover {
+      background-color: transparent;
+      color: var(--color-title);
+    }
+  }
+}
+
+.petlist_container {
+  display: flex;
+  flex-direction: column;
+  // width: 95%;
+  margin-right: 1rem;
+}
+
+.petlist_item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #cecece;
+  padding: 1rem;
+  margin: 1rem;
+
+  img {
+    margin-right: 1rem;
+    object-fit: cover;
+  }
+
+  span {
+    min-width: 100px;
+  }
+}
+
+.actions {
+  margin-left: auto;
+
+  a, button {
+    text-decoration: none;
+    background-color: transparent;
+    color: var(--color-title);
+    border: 2px solid var(--color-title);
+    font-weight: bold;
+    cursor: pointer;
+    padding: 7px 12px;
+    transition: .5s;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-left: 1rem;
+
+    &:hover {
+      background-color: var(--color-title);
+      color: white;
+    }
+
+    &.pet_del {
+      color: brown;
+      background-color: transparent;
+      border: 2px solid brown;
+
+      &:hover {
+        background-color: brown;
+        color: white;
+      }
+    }
+  }
+
+  p {
+    color: var(--color-botao-verde);
+    font-weight: bold;
+  }
+
+  .conclude_btn {
+    color: var(--color-botao-verde);
+    border-color: var(--color-botao-verde);
+
+    &:hover {
+      color: white;
+      background-color: var(--color-botao-verde);
+    }
+  }
+}
+
+
