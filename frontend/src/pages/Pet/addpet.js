@@ -25,13 +25,14 @@ export default function AddPet() {
 
     await api.post('pets/create', formData, {
       Authorization: `Bearer ${JSON.parse(token)}`,
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'multipart/form-data',
     })
     .then((response) => {
       setFlashMessage(response.data.message, 'success');
       navigate('/pet/mypets');
     })
     .catch((error) => {
+      console.log(error.response.data)
       if (typeof error.response.data.error === 'string') {
         setFlashMessage(error.response.data.error, 'error');
       } else {

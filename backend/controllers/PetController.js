@@ -187,6 +187,7 @@ module.exports = class PetController {
   static async schedule(req, res) {
     const { id } = req.params
 
+    console.log('oiiiii')
     const pet = await Pet.findOne({ _id: id });
 
     if (!pet) {
@@ -197,7 +198,7 @@ module.exports = class PetController {
     const user = await getUserByToken(token);
 
     if (pet.user._id.equals(user._id.toString())) {
-      return res.status(403).json({ error: 'Pet já é seu!' });
+      return res.status(403).json({ error: 'Esse Pet já é seu!' });
     }
 
     // check if user has already scheduled a visit

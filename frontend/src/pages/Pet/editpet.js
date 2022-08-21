@@ -28,7 +28,7 @@ export default function EditPet() {
     await api.patch(`pets/${pet._id}`, formData, {
       headers: {
         Authorization: `Bearer ${JSON.parse(token)}`,
-        'Content-Type': 'multipart-form-data'
+        'Content-Type': 'multipart/form-data',
       }
     })
     .then((response) => {

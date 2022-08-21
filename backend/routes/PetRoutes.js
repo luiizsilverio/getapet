@@ -12,7 +12,7 @@ router.get('/mypets', verifyToken, PetController.getUserPets);
 router.get('/:id', PetController.getPetById);
 router.get('/myadoptions', verifyToken, PetController.getUserAdoptions);
 router.delete('/:id', verifyToken, PetController.remove);
-router.post('/schedule/:id', verifyToken, PetController.schedule);
+router.patch('/schedule/:id', verifyToken, PetController.schedule);
 router.post('/conclude/:id', verifyToken, PetController.conclude);
 
 router.post('/create',
