@@ -51,7 +51,6 @@ module.exports = class PetController {
   static async getUserAdoptions(req, res) {
     const token = getToken(req);
     const user = await getUserByToken(token);
-
     const pets = await Pet.find({ 'adopter._id': user._id }).sort('-createdAt');
 
     res.status(200).json({ pets });
@@ -187,7 +186,6 @@ module.exports = class PetController {
   static async schedule(req, res) {
     const { id } = req.params
 
-    console.log('oiiiii')
     const pet = await Pet.findOne({ _id: id });
 
     if (!pet) {

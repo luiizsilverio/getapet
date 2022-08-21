@@ -24,6 +24,9 @@ export default function Navbar() {
         {authenticated ? (
           <>
             <li>
+              <Link to="/pet/myadoptions">Adoções</Link>
+            </li>
+            <li>
               <Link to="/pet/mypets">Pets</Link>
             </li>
             <li>

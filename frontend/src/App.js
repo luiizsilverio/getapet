@@ -12,6 +12,7 @@ import MyPets from './pages/Pet/mypets';
 import AddPet from './pages/Pet/addpet';
 import EditPet from './pages/Pet/editpet';
 import PetDetails from './pages/Pet/petdetails';
+import MyAdoptions from './pages/Pet/myadoptions';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/register" element={ <Register /> } />
             <Route path="/pet/mypets" element={ <MyPets /> } />
             <Route path="/pet/add" element={ <AddPet /> } />
+            <Route path="/pet/myadoptions" element={ <MyAdoptions /> } />
             <Route path="/pet/:id" element={ <PetDetails /> } />
             <Route path="/pet/edit/:id" element={ <EditPet /> } />
           </Routes>
