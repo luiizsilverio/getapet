@@ -40,7 +40,7 @@ export default function MyAdoptions() {
                 {pet.available ? (
                   <p>Adoção em andamento</p>
                 ) : (
-                  <p>Você já adotou esse pet</p>
+                  <p>Você adotou esse pet</p>
                 )}
               </div>
             </div>

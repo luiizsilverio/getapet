@@ -10,6 +10,31 @@ export default function MyPets() {
   const [token] = useState(localStorage.getItem('getapet:token') || '');
   const {setFlashMessage} = useFlashMessage();
 
+  async function concludeAdoption(id) {
+    console.log(id)
+    await api.post(`/pets/conclude/${id}`, null, {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`
+      }
+    })
+    .then((response) => {
+      const idx = pets.findIndex(pet => pet._id === id)
+      if (idx >= 0) {
+        const newPets = [...pets];
+        newPets[idx].available = false;
+        setPets([...newPets]);
+      }
+      setFlashMessage(response.data.message, 'success');
+    })
+    .catch((error) => {
+      if (typeof error.response.data.error === 'string') {
+        setFlashMessage(error.response.data.error, 'error');
+      } else {
+        setFlashMessage(error.response.data.error[0], 'error');
+      }
+    });
+  }
+
   async function removePet(id) {
     await api.delete(`/pets/${id}`, {
       headers: {
@@ -64,7 +89,12 @@ export default function MyPets() {
                 {pet.available ? (
                   <>
                     {pet.adopter && (
-                      <button className={styles.conclude_btn}>Concluir adoção</button>
+                      <button
+                        className={styles.conclude_btn}
+                        onClick={() => concludeAdoption(pet._id)}
+                      >
+                        Concluir adoção
+                      </button>
                     )}
                     <Link to={`/pet/edit/${pet._id}`}>Editar</Link>
                     <button
@@ -75,7 +105,7 @@ export default function MyPets() {
                     </button>
                   </>
                 ) : (
-                  <p>Pet já foi adotado</p>
+                  <p>Pet adotado</p>
                 )}
               </div>
             </div>
