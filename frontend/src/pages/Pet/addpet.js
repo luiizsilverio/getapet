@@ -32,7 +32,7 @@ export default function AddPet() {
       navigate('/pet/mypets');
     })
     .catch((error) => {
-      console.log(error.response.data)
+      console.warn(error.response.data)
       if (typeof error.response.data.error === 'string') {
         setFlashMessage(error.response.data.error, 'error');
       } else {

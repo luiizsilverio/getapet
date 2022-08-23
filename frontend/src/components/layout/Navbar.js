@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import { List } from "phosphor-react";
+import { List, PawPrint } from "phosphor-react";
 
 import { UserContext } from "../../context/UserContext";
 import Logo from '../../assets/img/logo.png';
@@ -49,12 +49,16 @@ export default function Navbar() {
         )}
       </ul>
 
-      <a className={styles.btn_menuzinho} onClick={() => setShowMenu(!showMenu)}>
+      <button className={styles.btn_menuzinho} onClick={() => setShowMenu(!showMenu)}>
         <List size={32} color="var(--color-title)" weight="bold" />
-      </a>
+      </button>
 
-      {/* <ul className={`${styles.navbar_menuzinho} ${showMenu && "mostrar"}`}> */}
-      <ul className={styles.navbar_menuzinho} show={showMenu ? "true" : "false"}>
+      <ul
+        className={styles.navbar_menuzinho}
+        show={showMenu ? "true" : "false"}
+        onClick={() => setShowMenu(false)}
+      >
+        <PawPrint size={32} color="var(--color-title)" weight="fill" />
         <li>
           <Link to="/">Adotar um Pet</Link>
         </li>
@@ -69,7 +73,9 @@ export default function Navbar() {
             <li>
               <Link to="/user/profile">Perfil</Link>
             </li>
-            <li onClick={logout}><a>Sair</a></li>
+            <li onClick={logout}>
+              <Link to="/">Sair</Link>
+            </li>
           </>
         ) : (
           <>

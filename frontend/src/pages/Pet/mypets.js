@@ -11,7 +11,6 @@ export default function MyPets() {
   const {setFlashMessage} = useFlashMessage();
 
   async function concludeAdoption(id) {
-    console.log(id)
     await api.post(`/pets/conclude/${id}`, null, {
       headers: {
         Authorization: `Bearer ${JSON.parse(token)}`

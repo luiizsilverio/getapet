@@ -54,6 +54,14 @@
 
 .btn_menuzinho {
   display: none;
+  background-color: transparent;
+  border: 0;
+  margin: 8px 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-laranja);
+  }
 }
 
 ul.navbar_menuzinho {
@@ -64,8 +72,9 @@ ul.navbar_menuzinho {
   top: 64px;
   padding: 12px;
   min-width: 200px;
-  border: 2px solid var(--color-laranja);
+  border: 2px solid white;
   border-radius: 5px;
+  padding-bottom: 1.5rem;
 }
 
 @media (max-width: 740px) {
