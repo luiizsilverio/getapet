@@ -6,6 +6,7 @@
   // background-color: var(--color-laranja-2);
   background: linear-gradient(to top, var(--color-laranja), var(--color-laranja-2));
   color: var(--color-title);
+  position: relative;
 
   ul {
     display: flex;
@@ -19,7 +20,7 @@
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.4s;
+    transition: all 0.2s;
     padding: .5rem;
     border-radius: 5px;
     margin-left: 0.2rem;
@@ -48,6 +49,36 @@
 
   h2 {
     font-size: 1.8rem;
+  }
+}
+
+.btn_menuzinho {
+  display: none;
+}
+
+ul.navbar_menuzinho {
+  display: none;
+  background-color: var(--color-laranja-2);
+  position: absolute;
+  right: 1rem;
+  top: 64px;
+  padding: 12px;
+  min-width: 200px;
+  border: 2px solid var(--color-laranja);
+  border-radius: 5px;
+}
+
+@media (max-width: 740px) {
+  ul.navbar_menuzao {
+    display: none;
+  }
+
+  .btn_menuzinho {
+    display: initial;
+  }
+
+  ul[show="true"] {
+    display: inline-block;
   }
 }
 

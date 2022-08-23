@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
 import RoundedImage from '../../components/layout/RoundedImage';
 import api from '../../utils/api';
 import styles from './Pet.module.scss';
