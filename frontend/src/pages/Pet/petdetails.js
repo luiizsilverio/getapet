@@ -13,8 +13,10 @@ export default function PetDetails() {
   const [msgVisita, setMsgVisita] = useState('');
 
   async function schedule() {
-    await api.patch(`pets/schedule/${id}`, {
-      Authorization: `Bearer ${JSON.parse(token)}`
+    await api.patch(`pets/schedule/${id}`, null, {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`
+      }
     })
     .then((response) => {
       setFlashMessage(response.data.message, 'success');

@@ -8,6 +8,7 @@
 ## Conteúdo
 * [Sobre o Projeto](#sobre-o-projeto)
 * [Tecnologias](#hammer_and_wrench-tecnologias)
+* [Screenshots](#camera_flash-screenshots)
 * [Iniciando a Aplicação](#car-Iniciando-a-aplicação)
 * [Licença](#balance_scale-licença)
 * [Contato](#email-contato)
@@ -51,6 +52,10 @@ A API trabalha com banco de dados __MongoDB__, autenticação JWT, upload de ima
   * __SASS__ para estilização
   * __Phosphor-React__ para ícones
   * __Axios__ para acessar API
+
+
+## :camera_flash: Screenshots
+![](https://github.com/luiizsilverio/getapet/blob/main/frontend/src/assets/img/getapet.gif)
 
 
 ## :car: Iniciando a aplicação
